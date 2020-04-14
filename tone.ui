@@ -20,64 +20,122 @@
       <x>19</x>
       <y>19</y>
       <width>392</width>
-      <height>231</height>
+      <height>235</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="mainVerticalLayout">
      <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Для анализа эмоциональной окраски музыкального произведения
- введите название и исполнителя и нажмите &quot;Анализировать&quot;</string>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="nameHorizontalLayout">
+      <layout class="QHBoxLayout" name="infoHorizontalLayout">
        <item>
-        <widget class="QLineEdit" name="nameLineEdit">
-         <property name="maximumSize">
+        <widget class="QLabel" name="imageLabel">
+         <property name="minimumSize">
           <size>
-           <width>300</width>
-           <height>16777215</height>
+           <width>0</width>
+           <height>150</height>
           </size>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="nameLabel">
-         <property name="text">
-          <string>Название</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="commonInfoVerticalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="yearHorizontalLayout">
+           <item>
+            <widget class="QLabel" name="textYearLabel">
+             <property name="maximumSize">
+              <size>
+               <width>30</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Год:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="yearLabel">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="authorHorizontalLayout">
+           <item>
+            <widget class="QLabel" name="textAuthorLabel">
+             <property name="maximumSize">
+              <size>
+               <width>75</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Исполнитель:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="authorLabel">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="nameHorizontalLayout">
+           <item>
+            <widget class="QLabel" name="textNameLabel">
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Название:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nameLabel">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="authorHorizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLineEdit" name="authorLineEdit">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
+        <widget class="QLabel" name="textMoodLabel">
          <property name="maximumSize">
           <size>
-           <width>300</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="text">
+          <string>Общее настроение:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="authorLabel">
+        <widget class="QLabel" name="moodLabel">
          <property name="text">
-          <string>Исполнитель</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -99,7 +157,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="analyseButton">
+        <widget class="QPushButton" name="moreButton">
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -107,7 +165,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Анализировать</string>
+          <string>Подробнее</string>
          </property>
         </widget>
        </item>
