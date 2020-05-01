@@ -1,5 +1,3 @@
-import time
-
 from PIL import Image
 from urllib import request
 from selenium import webdriver
