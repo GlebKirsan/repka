@@ -1,7 +1,7 @@
 # Install
 
 Для полного функционирования нужно установить все зависимости из файла ```requirements.txt``` через команду
-```bash
+```
 pip install -r requirements.txt
 ```
 
