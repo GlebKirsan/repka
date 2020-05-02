@@ -1,2 +1,4 @@
 .vscode
 debug.log
+*.pyc
+__pycache__
