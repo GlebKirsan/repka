@@ -8,9 +8,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from tone_window import Ui_ToneWindow
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtWidgets.QWidget):
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(430, 300)
@@ -51,9 +53,12 @@ class Ui_MainWindow(object):
         self.buttonHorizontalLayout.setObjectName("buttonHorizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.buttonHorizontalLayout.addItem(spacerItem)
+        
         self.analyseButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.analyseButton.setMinimumSize(QtCore.QSize(100, 0))
         self.analyseButton.setObjectName("analyseButton")
+        self.analyseButton.pressed.connect(self.create_new_window)
+        
         self.buttonHorizontalLayout.addWidget(self.analyseButton)
         self.mainVerticalLayout.addLayout(self.buttonHorizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -76,6 +81,11 @@ class Ui_MainWindow(object):
         self.nameLabel.setText(_translate("MainWindow", "Название"))
         self.authorLabel.setText(_translate("MainWindow", "Исполнитель"))
         self.analyseButton.setText(_translate("MainWindow", "Анализировать"))
+        
+    def create_new_window(self):
+        print("open tone window")
+        self.child_win = Ui_ToneWindow(self)
+        self.child_win.show()
 
 
 if __name__ == "__main__":

@@ -10,11 +10,20 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(430, 300)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_ToneWindow(QtWidgets.QWidget):
+    
+    def __init__(self, parent=None):
+        print("init tone_window")
+        QtWidgets.QWidget.__init__(self, parent)
+        self.setWindowTitle("Child Window!")
+        ToneWindow = QtWidgets.QMainWindow()
+        self.setupUi(ToneWindow)
+        ToneWindow.show()
+
+    def setupUi(self, ToneWindow):
+        ToneWindow.setObjectName("ToneWindow")
+        ToneWindow.resize(430, 300)
+        self.centralwidget = QtWidgets.QWidget(ToneWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(19, 19, 392, 235))
@@ -86,33 +95,33 @@ class Ui_MainWindow(object):
         self.moreButton.setObjectName("moreButton")
         self.buttonHorizontalLayout.addWidget(self.moreButton)
         self.mainVerticalLayout.addLayout(self.buttonHorizontalLayout)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        ToneWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(ToneWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 430, 21))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        ToneWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(ToneWindow)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        ToneWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(ToneWindow)
+        QtCore.QMetaObject.connectSlotsByName(ToneWindow)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, ToneWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.textYearLabel.setText(_translate("MainWindow", "Год:"))
-        self.textAuthorLabel.setText(_translate("MainWindow", "Исполнитель:"))
-        self.textNameLabel.setText(_translate("MainWindow", "Название:"))
-        self.textMoodLabel.setText(_translate("MainWindow", "Общее настроение:"))
-        self.moreButton.setText(_translate("MainWindow", "Подробнее"))
+        ToneWindow.setWindowTitle(_translate("ToneWindow", "ToneWindow"))
+        self.textYearLabel.setText(_translate("ToneWindow", "Год:"))
+        self.textAuthorLabel.setText(_translate("ToneWindow", "Исполнитель:"))
+        self.textNameLabel.setText(_translate("ToneWindow", "Название:"))
+        self.textMoodLabel.setText(_translate("ToneWindow", "Общее настроение:"))
+        self.moreButton.setText(_translate("ToneWindow", "Подробнее"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+#if __name__ == "__main__":
+#    import sys
+#    app = QtWidgets.QApplication(sys.argv)
+#    ToneWindow = QtWidgets.QMainWindow()
+#    ui = Ui_ToneWindow()
+#    ui.setupUi(ToneWindow)
+#    ToneWindow.show()
+#    sys.exit(app.exec_())
