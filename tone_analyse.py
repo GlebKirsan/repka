@@ -14,10 +14,7 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         # Call the inherited classes __init__ method
         super().__init__()
         # Load the .ui file
-        uic.loadUi('tone.ui', self)
-        
-        # self.more_btn = self.findChild(QtWidgets.QPushButton, 'moreButton')
-        # self.more_btn.clicked.connect(self.moreButtonPressed)      
+        uic.loadUi('tone.ui', self)      
         
         print("ready to show tone")
         self.show() # Show the GUI
@@ -26,8 +23,7 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         
         self.fillAuthor()
         self.fillName()
-        self.fillArt()
-        
+        self.fillArt()        
         self.analyseTone()
         
     def fillArt(self):
@@ -65,7 +61,7 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         self.scoresLabel = self.findChild(QtWidgets.QLabel, 'scoresLabel')
         scores_info = ""
         for sc_name, sc_value in self.scores.items():
-            scores_info += all_tones[sc_name] + ": " + str(sc_value) + "\n"
+            scores_info += all_tones[sc_name] + ": " + str(int(sc_value*100)) + "%\n"
         print(scores_info)
         self.scoresLabel.setText(scores_info)
         
