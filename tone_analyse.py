@@ -1,15 +1,24 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PIL import ImageQt
+# from name_author import NameAuthor
 from album_art_finder import find_album_art
 from lyrics_finder import get_lyrics
 
+
 class ToneAnalyse(QtWidgets.QMainWindow):
     def __init__(self, name, author):
+        self.parent = self
         # Call the inherited classes __init__ method
         super().__init__()
         # Load the .ui file
         uic.loadUi('tone.ui', self)
+        
+        self.need_be_open = True
+        
+        self.more_btn = self.findChild(QtWidgets.QPushButton, 'moreButton')
+        self.more_btn.clicked.connect(self.moreButtonPressed)      
+        
         print("ready to show tone")
         self.show() # Show the GUI
         self.name = name
@@ -43,4 +52,15 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         self.nameLabel.setText(self.name)
     
     def getLyrics(self):
+        pass
+    
+    def moreButtonPressed(self):
+        print("more button pressed")
+        self.need_be_open = False
+        # self.hide()
+        # self.open_new_dialog()
+        
+    def open_new_dialog(self):
+        # self.webview.go_back()
+        # self.parent.show()
         pass
