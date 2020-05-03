@@ -59,11 +59,14 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         
         score_values = self.scores.values()
         max_value = 0
+        common_tone_info = ""
         if (score_values):
             max_value = max(score_values)
-        tone_by_score = list(self.scores.keys())[list(self.scores.values()).index(max_value)]
-        tone_russian = all_tones[tone_by_score]
-        common_tone_info = tone_russian if max_value > 0.3 else "отсутствует"
+            tone_by_score = list(self.scores.keys())[list(self.scores.values()).index(max_value)]
+            tone_russian = all_tones[tone_by_score]
+            common_tone_info = tone_russian if max_value > 0.3 else "отсутствует"
+        else:
+            common_tone_info = "отсутствует"
         self.moodLabel = self.findChild(QtWidgets.QLabel, 'moodLabel')
         self.moodLabel.setText(common_tone_info)
         
