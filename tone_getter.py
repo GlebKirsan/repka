@@ -51,7 +51,6 @@ def get_tone(author: str, title: str) -> Tuple[Image.Image,
         # Параметр для браузера, чтобы не открывалось окно
         options.add_argument('headless')
         driver = webdriver.Chrome(chrome_options=options)
-        lyrics = get_lyrics(driver, author, title)
 
         # Сайт с текстами песен
         driver.get('https://tone-analyzer-demo.ng.bluemix.net/')
@@ -62,6 +61,7 @@ def get_tone(author: str, title: str) -> Tuple[Image.Image,
 
         # Находим область для текста и вставляем в неё слова песни
         text_area = driver.find_element_by_class_name('input--textarea')
+        lyrics = get_lyrics(author, title)
         text_area.send_keys(lyrics)
 
         # Нажимаем "Анализировать""

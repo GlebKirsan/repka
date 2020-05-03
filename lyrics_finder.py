@@ -1,23 +1,8 @@
-from selenium import webdriver
+import lyricwikia
 
 
-def get_lyrics(driver: webdriver.Chrome,
-               author: str, title: str) -> str:
-    # Сайт с текстами песен
-    driver.get('https://lyricsworld.ru/')
-
-    # Через селектор находим форму поиска
-    text_field = driver.find_element_by_css_selector('.searchW.input')
-    # Передаём в неё автора и название песни
-    text_field.send_keys(f"{author} {title}")
-
-    # Жмём кнопку поиска
-    driver.find_element_by_class_name('submit-input-wrapped').click()
-    # Выбираем первый результат из списка
-    driver.find_element_by_css_selector('.serpresult :nth-child(2) a').click()
-
-    # Извлекаем текст песни
-    return driver.find_element_by_id('songLyricsDiv').text
+def get_lyrics(author: str, title: str) -> str:
+    return lyricwikia.get_lyrics(author, title)
 
 
 if __name__ == "__main__":
@@ -25,11 +10,4 @@ if __name__ == "__main__":
     title = input("Введите название песни > ")
 
     print('Текст песни')
-    try:
-        options = webdriver.ChromeOptions()
-        # Параметр для браузера, чтобы не открывалось окно
-        options.add_argument('headless')
-        driver = webdriver.Chrome(chrome_options=options)
-        print(get_lyrics(author, title))
-    finally:
-        driver.quit()
+    print(lyricwikia.get_lyrics(author, title))
