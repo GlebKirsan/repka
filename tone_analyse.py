@@ -13,40 +13,34 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         print("ready to show tone")
         self.show() # Show the GUI
         self.name = name
-        print(self.name)
         self.author = author
-        print(self.author)
         
         self.fillAuthor()
         self.fillName()
         # self.fillYear()
-        # self.fillArt()
+        self.fillArt()
         # self.getLyrics()
         
     def fillArt(self):
-        print("fill art")
+        print("filling art...")
         self.imageLabel = self.findChild(QtWidgets.QLabel, 'imageLabel')
         image = find_album_art(self.author, self.name)
-        qimage = ImageQt(image)
+        qimage = ImageQt.ImageQt(image)
         pixmap = QtGui.QPixmap.fromImage(qimage)
-        self.imageLabel.detPixmap(pixmap)
+        self.imageLabel.setPixmap(pixmap)
         
     def fillYear(self):
         pass
     
     def fillAuthor(self):
-        print("fill author")
+        print("filling author...")
         self.authorLabel = self.findChild(QtWidgets.QLabel, 'authorLabel')
         self.authorLabel.setText(self.author)
     
     def fillName(self):
-        print("fill name")
+        print("filling name...")
         self.nameLabel = self.findChild(QtWidgets.QLabel, 'nameLabel')
         self.nameLabel.setText(self.name)
     
     def getLyrics(self):
         pass
-
-    def showChildWindow(self):
-        self.child_win = ChildWindow(self)
-        self.child_win.show()
