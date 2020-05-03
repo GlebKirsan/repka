@@ -7,6 +7,8 @@ from lyrics_finder import get_lyrics
 from tone_getter import get_tone
 from tones import all_tones
 
+from threading import Thread
+
 
 class ToneAnalyse(QtWidgets.QMainWindow):
     def __init__(self, name, author):
@@ -23,8 +25,14 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         
         self.fillAuthor()
         self.fillName()
-        self.fillArt()        
-        self.analyseTone()
+        
+    def parallelize(self):
+        thread1 = Thread(target=self.fillArt)
+        thread2 = Thread(target=self.analyseTone)
+        thread1.start()
+        thread2.start()
+        thread1.join()
+        thread2.join()
         
     def fillArt(self):
         print("filling art...")
