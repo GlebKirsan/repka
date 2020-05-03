@@ -68,7 +68,6 @@ def get_tone(author: str, title: str) -> Tuple[Image.Image,
         button_selector = 'button.input--submit-button'
         driver.find_element_by_css_selector(button_selector).click()
         # Ждём результатов
-        time.sleep(5)
         statistics_img = get_statistics_screenshot(driver)
         scores = get_scores(driver)
         return statistics_img, scores
