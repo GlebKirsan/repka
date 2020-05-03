@@ -4,6 +4,8 @@ from PIL import ImageQt
 # from name_author import NameAuthor
 from album_art_finder import find_album_art
 from lyrics_finder import get_lyrics
+from tone_getter import get_tone
+from tones import all_tones
 
 
 class ToneAnalyse(QtWidgets.QMainWindow):
@@ -14,10 +16,8 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         # Load the .ui file
         uic.loadUi('tone.ui', self)
         
-        self.need_be_open = True
-        
-        self.more_btn = self.findChild(QtWidgets.QPushButton, 'moreButton')
-        self.more_btn.clicked.connect(self.moreButtonPressed)      
+        # self.more_btn = self.findChild(QtWidgets.QPushButton, 'moreButton')
+        # self.more_btn.clicked.connect(self.moreButtonPressed)      
         
         print("ready to show tone")
         self.show() # Show the GUI
@@ -26,9 +26,9 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         
         self.fillAuthor()
         self.fillName()
-        # self.fillYear()
         self.fillArt()
-        # self.getLyrics()
+        
+        self.analyseTone()
         
     def fillArt(self):
         print("filling art...")
@@ -37,10 +37,7 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         qimage = ImageQt.ImageQt(image)
         pixmap = QtGui.QPixmap.fromImage(qimage)
         self.imageLabel.setPixmap(pixmap)
-        
-    def fillYear(self):
-        pass
-    
+
     def fillAuthor(self):
         print("filling author...")
         self.authorLabel = self.findChild(QtWidgets.QLabel, 'authorLabel')
@@ -51,16 +48,43 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         self.nameLabel = self.findChild(QtWidgets.QLabel, 'nameLabel')
         self.nameLabel.setText(self.name)
     
-    def getLyrics(self):
-        pass
-    
-    def moreButtonPressed(self):
-        print("more button pressed")
-        self.need_be_open = False
-        # self.hide()
-        # self.open_new_dialog()
+    def analyseTone(self):
+        print("analysing tone...")
+        screen, self.scores = get_tone(self.author, self.name)
         
-    def open_new_dialog(self):
-        # self.webview.go_back()
-        # self.parent.show()
-        pass
+        score_values = self.scores.values()
+        max_value = 0
+        if (score_values):
+            max_value = max(score_values)
+        tone_by_score = list(self.scores.keys())[list(self.scores.values()).index(max_value)]
+        tone_russian = all_tones[tone_by_score]
+        common_tone_info = tone_russian if max_value > 0.3 else "отсутствует"
+        self.moodLabel = self.findChild(QtWidgets.QLabel, 'moodLabel')
+        self.moodLabel.setText(common_tone_info)
+        
+        self.scoresLabel = self.findChild(QtWidgets.QLabel, 'scoresLabel')
+        scores_info = ""
+        for sc_name, sc_value in self.scores.items():
+            scores_info += all_tones[sc_name] + ": " + str(sc_value) + "\n"
+        print(scores_info)
+        self.scoresLabel.setText(scores_info)
+        
+        print("start pic")
+        self.screenLabel = self.findChild(QtWidgets.QLabel, 'screenLabel')
+        sc_label_width = self.screenLabel.geometry().width()
+        sc_size = screen.size
+        sc_size_first = sc_size[0]
+        sc_size_second = sc_size[1]
+        xx = sc_size_first / sc_label_width
+        sc_size = (sc_label_width, int(sc_size_second / xx))
+        screen = screen.resize(sc_size)
+        qimage = ImageQt.ImageQt(screen)
+        pixmap = QtGui.QPixmap.fromImage(qimage)
+        self.screenLabel.setPixmap(pixmap)
+        print ("finish pic")
+        
+        
+        
+
+        
+    
