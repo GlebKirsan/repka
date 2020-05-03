@@ -47,11 +47,11 @@ def get_scores(driver) -> Dict[str, float]:
 def get_tone(author: str, title: str) -> Tuple[Image.Image,
                                                Dict[str, float]]:
     try:
-        lyrics = get_lyrics(author, title)
         options = webdriver.ChromeOptions()
         # Параметр для браузера, чтобы не открывалось окно
         options.add_argument('headless')
         driver = webdriver.Chrome(chrome_options=options)
+        lyrics = get_lyrics(driver, author, title)
 
         # Сайт с текстами песен
         driver.get('https://tone-analyzer-demo.ng.bluemix.net/')
