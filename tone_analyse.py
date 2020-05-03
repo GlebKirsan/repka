@@ -25,6 +25,7 @@ class ToneAnalyse(QtWidgets.QMainWindow):
         
         self.fillAuthor()
         self.fillName()
+        self.parallelize()
         
     def parallelize(self):
         thread1 = Thread(target=self.fillArt)
